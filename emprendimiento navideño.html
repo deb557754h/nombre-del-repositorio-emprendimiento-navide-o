@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regalos con magia navideña 🎄✨</title>
+    <!-- Google Fonts: Inter / Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Iconos de FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Hoja de estilos -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Canvas de Nieve suave que cae en el fondo -->
+    <canvas id="snowCanvas"></canvas>
+
+    <!-- Barra superior de anuncios y descuentos -->
+    <div class="top-announcement-bar">
+        <span>✨ ¡Especial de Navidad! Envíos GRATIS a todo el país en pedidos mayores a $50 🎁</span>
+        <span>|</span>
+        <span>🎄 Cupón: <span class="badge-coupon">MAGIA2026</span> para 10% OFF</span>
+    </div>
+
+    <!-- Botón flotante para pausar o activar la nieve -->
+    <button class="snow-toggle-btn" id="snowToggleBtn" title="Activar/Desactivar efecto de nieve">
+        <i class="fa-regular fa-snowflake"></i> Nieve: On
+    </button>
+
+    <!-- ==================== HEADER / BARRA DE NAVEGACIÓN ==================== -->
+    <header class="header container">
+        <div class="logo-wrapper">
+            <span class="santa-hat">🎅</span>
+            <div class="logo">LOGO</div>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="#inicio" class="nav-link active">Inicio</a>
+            <a href="#regalos" class="nav-link">Regalos</a>
+            <a href="#packs" class="nav-link">Packs</a>
+            <a href="#contacto" class="nav-link">Contacto</a>
+        </nav>
+
+        <div class="header-actions">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Buscar regalo...">
+            </div>
+            <button class="cart-btn" id="openCartBtn">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span>Carrito (<span id="cartCount">0</span>)</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ==================== CONTENIDO PRINCIPAL ==================== -->
+    <main class="container">
+
+        <!-- ===== HERO SECTION (BANNER PRINCIPAL DECORADO) ===== -->
+        <section class="hero-section" id="inicio">
+            <div class="hero-decor-garland"></div>
+            <div class="hero-content">
+                <div class="hero-countdown-tag">
+                    <i class="fa-solid fa-sleigh"></i>
+                    <span>Faltan: <strong id="countdownDays">calculando...</strong> para Navidad</span>
+                </div>
+                <h1 class="hero-title">Regalos con<br>magia navideña <span class="sparkle-icon">✨</span></h1>
+                <p class="hero-subtitle">Detalles únicos, dulces y personalizados hechos con amor para llenar de ilusión el corazón de quienes más quieres en estas fiestas.</p>
+                <div class="hero-buttons">
+                    <a href="#regalos" class="btn btn-primary">
+                        <i class="fa-solid fa-gift"></i> Ver regalos
+                    </a>
+                    <button class="btn btn-outline" id="btnArmarPack">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Armar un pack
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <div class="hero-image-card">
+                    <img src="img/hero_regalos.jpg" 
+                         alt="Cajas de regalos navideños con lazos dorados" 
+                         id="heroImg"
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1543257580-7269da773bf5?auto=format&fit=crop&w=700&q=80';">
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SECCIÓN CATEGORÍAS ===== -->
+        <section class="categories-section" id="packs">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-boxes-packing" style="color: var(--primary-red);"></i> Categorías
+                </h2>
+                <span class="section-subtitle">Colecciones temáticas para cada ser especial</span>
+            </div>
+            <div class="categories-grid">
+                
+                <!-- Categoría 1: Perfumería & Belleza -->
+                <div class="category-card" data-category="perfumes">
+                    <div class="category-img-container">
+                        <img src="img/cat_perfumes.jpg" 
+                             alt="Perfumes y sets de regalo navideños"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80';">
+                    </div>
+                    <div class="category-meta">
+                        <h4 class="category-title">Perfumería & Sets</h4>
+                        <p class="category-desc">Aromas y elegancia de lujo ✨</p>
+                    </div>
+                </div>
+
+                <!-- Categoría 2: Mascotas -->
+                <div class="category-card" data-category="mascotas">
+                    <div class="category-img-container">
+                        <img src="img/cat_mascotas.jpg" 
+                             alt="Regalos y snacks para mascotas"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=600&q=80';">
+                    </div>
+                    <div class="category-meta">
+                        <h4 class="category-title">Mundo Pet Navideño</h4>
+                        <p class="category-desc">Premios para consentirlos 🐾</p>
+                    </div>
+                </div>
+
+                <!-- Categoría 3: Magia Infantil -->
+                <div class="category-card" data-category="ninos">
+                    <div class="category-img-container">
+                        <img src="img/cat_ninos.jpg" 
+                             alt="Niños abriendo regalo navideño con luces mágicas"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=600&q=80';">
+                    </div>
+                    <div class="category-meta">
+                        <h4 class="category-title">Ilusión Infantil</h4>
+                        <p class="category-desc">Sonrisas y magia pura 🧸</p>
+                    </div>
+                </div>
+
+                <!-- Categoría 4: Calendarios de Adviento y Juguetes -->
+                <div class="category-card" data-category="advent">
+                    <div class="category-img-container">
+                        <img src="img/cat_advent.jpg" 
+                             alt="Calendario de adviento y coleccionables"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=600&q=80';">
+                    </div>
+                    <div class="category-meta">
+                        <h4 class="category-title">Calendarios de Adviento</h4>
+                        <p class="category-desc">24 sorpresas diarias 🏎️</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== SECCIÓN REGALOS DESTACADOS ===== -->
+        <section class="products-section" id="regalos">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-candy-cane" style="color: var(--primary-red);"></i> Regalos destacados
+                </h2>
+                <span class="section-subtitle">Los favoritos para compartir en Nochebuena</span>
+            </div>
+            <div class="products-grid" id="productsGrid">
+
+                <!-- Producto 1: Árbol Navideño -->
+                <div class="product-card" data-id="1" data-name="Árbol Nevado Nórdico Imperial" data-price="49.99">
+                    <span class="product-badge">🔥 -38% OFF</span>
+                    <div class="product-img-box">
+                        <img src="img/prod_arbol.jpg" 
+                             alt="Árbol de Navidad decorado"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1576919228236-a097c32a5cd4?auto=format&fit=crop&w=600&q=80';">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span>4.9 (148)</span>
+                        </div>
+                        <h3 class="product-name">Árbol Nevado Nórdico Imperial</h3>
+                        <p class="product-description">Efecto escarcha invernal realista con follaje tupido y base metálica reforzada.</p>
+                        <div class="price-container">
+                            <span class="current-price">$49.99</span>
+                            <span class="old-price">$79.99</span>
+                        </div>
+                        <button class="btn btn-add-cart">
+                            <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Producto 2: Galletas Navideñas -->
+                <div class="product-card" data-id="2" data-name="Cofre Dulzura Navideña Artesanal" data-price="21.50">
+                    <span class="product-badge badge-gold">🍪 100% ARTESANAL</span>
+                    <div class="product-img-box">
+                        <img src="img/prod_galletas.jpg" 
+                             alt="Caja de galletas navideñas decoradas"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&w=600&q=80';">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span>5.0 (92)</span>
+                        </div>
+                        <h3 class="product-name">Cofre Dulzura Navideña Artesanal</h3>
+                        <p class="product-description">Fina selección de galletas de mantequilla y canela decoradas a mano con glaseado real.</p>
+                        <div class="price-container">
+                            <span class="current-price">$21.50</span>
+                            <span class="old-price">$30.00</span>
+                        </div>
+                        <button class="btn btn-add-cart">
+                            <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Producto 3: Set Gorros y Accesorios -->
+                <div class="product-card" data-id="3" data-name="Kit Festivo Santa Glow con Luces LED" data-price="14.99">
+                    <span class="product-badge badge-green">⭐ MÁS VENDIDO</span>
+                    <div class="product-img-box">
+                        <img src="img/prod_gorro.jpg" 
+                             alt="Gorro festivo navideño"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80';">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                            <span>4.8 (215)</span>
+                        </div>
+                        <h3 class="product-name">Kit Festivo Santa Glow con Luces LED</h3>
+                        <p class="product-description">Gorro de felpa plush extra suave y diademas luminosas para celebrar la Nochebuena.</p>
+                        <div class="price-container">
+                            <span class="current-price">$14.99</span>
+                            <span class="old-price">$22.00</span>
+                        </div>
+                        <button class="btn btn-add-cart">
+                            <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Producto 4: Tazas Navideñas -->
+                <div class="product-card" data-id="4" data-name="Dúo de Tazas Ho Ho Ho & Bastones" data-price="23.90">
+                    <span class="product-badge">✨ REGALO IDEAL</span>
+                    <div class="product-img-box">
+                        <img src="img/prod_tazas.jpg" 
+                             alt="Tazas navideñas festivas"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80';">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span>4.9 (104)</span>
+                        </div>
+                        <h3 class="product-name">Dúo de Tazas "Ho Ho Ho" & Bastones</h3>
+                        <p class="product-description">Cerámica premium de 350ml para chocolate caliente, incluye 2 bastones de caramelo.</p>
+                        <div class="price-container">
+                            <span class="current-price">$23.90</span>
+                            <span class="old-price">$34.00</span>
+                        </div>
+                        <button class="btn btn-add-cart">
+                            <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== SECCIÓN FOOTER / CONTACTO ===== -->
+        <footer class="contact-section" id="contacto">
+            <div class="contact-info">
+                <h3 class="contact-title">
+                    <i class="fa-solid fa-holly-berry" style="color: var(--primary-red);"></i> Contáctanos
+                </h3>
+                <ul class="contact-links">
+                    <li><a href="#"><i class="fa-regular fa-envelope"></i> Correo, WhatsApp, Instagram</a></li>
+                    <li><a href="#"><i class="fa-solid fa-truck-fast"></i> Envíos nacionales y devoluciones</a></li>
+                    <li><a href="#"><i class="fa-regular fa-circle-question"></i> Preguntas frecuentes & Ayuda</a></li>
+                </ul>
+            </div>
+            <div class="newsletter-box">
+                <form id="newsletterForm" class="newsletter-form">
+                    <input type="email" id="newsletterEmail" placeholder="Tu correo electrónico..." required>
+                    <button type="submit" class="btn btn-subscribe">
+                        <i class="fa-regular fa-paper-plane"></i> Suscribirme
+                    </button>
+                </form>
+                <p id="newsletterMsg" class="newsletter-message"></p>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Botón flotante para WhatsApp con gorrito -->
+    <a href="https://wa.me/" target="_blank" class="floating-whatsapp" title="Escríbenos por WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>¿Dudas? Chatea con Santa</span>
+    </a>
+
+    <!-- ==================== MODAL DEL CARRITO FESTIVO ==================== -->
+    <div class="cart-modal-overlay" id="cartModalOverlay">
+        <div class="cart-modal">
+            <div class="cart-modal-header">
+                <h3><i class="fa-solid fa-gift" style="color: var(--primary-red);"></i> Tu Carrito Navideño</h3>
+                <button class="close-modal-btn" id="closeCartBtn">&times;</button>
+            </div>
+            <div class="cart-modal-body" id="cartItemsContainer">
+                <div class="empty-cart-msg">
+                    <i class="fa-solid fa-sleigh" style="font-size: 2.8rem; color: #ff5258; margin-bottom: 12px;"></i>
+                    <p style="font-weight: 700; font-size: 1.1rem; color: #111827;">Tu trineo está vacío</p>
+                    <small style="color: #6b7280;">¡Elige tus regalos favoritos para comenzar a empacar la magia!</small>
+                </div>
+            </div>
+            <div class="cart-modal-footer">
+                <div class="cart-total">
+                    <span>Total a pagar:</span>
+                    <strong id="cartTotalPrice">$0.00</strong>
+                </div>
+                <div class="cart-actions">
+                    <button class="btn btn-clear-cart" id="clearCartBtn">Vaciar trineo</button>
+                    <button class="btn btn-checkout" id="checkoutBtn">Finalizar Compra 🎁</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== NOTIFICACIÓN TOAST FLOTANTE ==================== -->
+    <div id="toastNotification" class="toast">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toastMessage">¡Producto agregado al carrito!</span>
+    </div>
+
+    <!-- Script de funcionalidad -->
+    <script src="script.js"></script>
+</body>
+</html>

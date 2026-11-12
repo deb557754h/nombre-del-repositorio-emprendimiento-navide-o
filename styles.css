@@ -1,0 +1,1177 @@
+/* ==========================================================================
+   HOJA DE ESTILOS - EMPRENDIMIENTO NAVIDEÑO
+   "Regalos con magia navideña" - EDICIÓN FESTIVA Y DECORADA 🎄✨
+   ========================================================================== */
+
+/* Variables de Colores y Fuentes */
+:root {
+    --primary-red: #ff5258;         /* Rojo coral festivo */
+    --primary-red-hover: #e0383e;
+    --primary-green: #22c55e;       /* Verde pino brillante */
+    --primary-green-hover: #16a34a;
+    --gold-accent: #f59e0b;         /* Dorado brillante de campanas y estrellas */
+    --gold-glow: rgba(245, 158, 11, 0.35);
+    --mint-bg: #eaf7ef;             /* Fondo verde claro del banner y footer */
+    --light-nav-bg: #fdf2f2;        /* Fondo pastel de los botones de navegación */
+    --light-gray-bg: #f3f4f6;       /* Fondo del buscador */
+    --text-dark: #1f2937;           /* Texto oscuro principal */
+    --text-muted: #6b7280;          /* Texto secundario */
+    --border-color: #f1f3f5;
+    --card-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    --hover-shadow: 0 16px 32px rgba(255, 82, 88, 0.15);
+    --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --radius-sm: 10px;
+    --radius-md: 18px;
+    --radius-lg: 28px;
+}
+
+/* Reset y estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    background: radial-gradient(circle at 10% 20%, #ffffff 0%, #fffafa 50%, #f7fdf9 100%);
+    color: var(--text-dark);
+    line-height: 1.6;
+    padding-bottom: 60px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Canvas de Nieve que flota suavemente por toda la pantalla */
+#snowCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Contenedor principal alineado y centrado */
+.container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ==========================================================================
+   BARRA SUPERIOR DE ANUNCIOS (TIRA FESTIVA)
+   ========================================================================== */
+.top-announcement-bar {
+    background: linear-gradient(90deg, #ff5258, #ff7a7e, #22c55e);
+    color: #ffffff;
+    text-align: center;
+    padding: 7px 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 8px rgba(255, 82, 88, 0.2);
+}
+
+.top-announcement-bar .badge-coupon {
+    background-color: #ffffff;
+    color: #ff5258;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.78rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+/* Botón flotante para activar/pausar la nieve */
+.snow-toggle-btn {
+    position: fixed;
+    top: 45px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #4b5563;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s ease;
+}
+
+.snow-toggle-btn:hover {
+    background: #ffffff;
+    color: var(--primary-red);
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   HEADER / NAVEGACIÓN
+   ========================================================================== */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 20px;
+    gap: 15px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+/* Botón LOGO con gorrito navideño */
+.logo-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.santa-hat {
+    position: absolute;
+    top: -15px;
+    left: -12px;
+    font-size: 1.6rem;
+    transform: rotate(-15deg);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    pointer-events: none;
+    animation: wiggle 3s infinite ease-in-out;
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(-15deg); }
+    50% { transform: rotate(-8deg) scale(1.05); }
+}
+
+.logo {
+    background: linear-gradient(135deg, var(--primary-red), #ff767a);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: 1.5px;
+    padding: 10px 34px;
+    border-radius: var(--radius-sm);
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(255, 82, 88, 0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 2px solid #ffffff;
+}
+
+.logo:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 18px rgba(255, 82, 88, 0.45);
+}
+
+/* Enlaces del menú (pastillas claras) */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-dark);
+    background-color: var(--light-nav-bg);
+    padding: 9px 24px;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    border: 1px solid rgba(255, 82, 88, 0.08);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: #fee9e9;
+    color: var(--primary-red);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(255, 82, 88, 0.15);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Buscador */
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    left: 14px;
+    color: #9ca3af;
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+
+.search-box input {
+    background-color: var(--light-gray-bg);
+    border: 1.5px solid transparent;
+    padding: 10px 16px 10px 36px;
+    border-radius: var(--radius-sm);
+    font-size: 0.92rem;
+    font-family: inherit;
+    width: 145px;
+    transition: all 0.25s ease;
+    outline: none;
+}
+
+.search-box input:focus {
+    width: 195px;
+    background-color: #ffffff;
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 3px rgba(255, 82, 88, 0.15);
+}
+
+/* Botón Carrito */
+.cart-btn {
+    background: linear-gradient(135deg, var(--primary-green), #16a34a);
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    padding: 10px 22px;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35);
+    transition: all 0.25s ease;
+}
+
+.cart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(34, 197, 94, 0.45);
+}
+
+/* ==========================================================================
+   HERO SECTION (BANNER PRINCIPAL DECORADO)
+   ========================================================================== */
+.hero-section {
+    background: linear-gradient(135deg, #e8f7ee 0%, #e1f4e9 60%, #ebf8f0 100%);
+    border-radius: var(--radius-lg);
+    padding: 60px 65px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    margin-top: 15px;
+    margin-bottom: 55px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* Guirnalda de luces / destellos decorativos */
+.hero-decor-garland {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: repeating-linear-gradient(90deg, #ff5258 0px, #ff5258 20px, #f59e0b 20px, #f59e0b 40px, #22c55e 40px, #22c55e 60px, #38bdf8 60px, #38bdf8 80px);
+    opacity: 0.7;
+}
+
+.hero-content {
+    flex: 1.1;
+    max-width: 530px;
+    z-index: 2;
+}
+
+/* Mini tag superior */
+.hero-countdown-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #ffffff;
+    color: #b45309;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    margin-bottom: 18px;
+    border: 1px solid #fef3c7;
+}
+
+.hero-countdown-tag i {
+    color: var(--gold-accent);
+}
+
+.hero-title {
+    font-size: 3.3rem;
+    font-weight: 800;
+    line-height: 1.15;
+    color: #111827;
+    margin-bottom: 18px;
+    letter-spacing: -0.5px;
+}
+
+.sparkle-icon {
+    display: inline-block;
+    color: var(--gold-accent);
+    animation: sparkle 2s infinite ease-in-out;
+}
+
+@keyframes sparkle {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.25) rotate(15deg); }
+}
+
+.hero-subtitle {
+    font-size: 1.08rem;
+    color: #4b5563;
+    margin-bottom: 32px;
+    line-height: 1.55;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* Botones con estilo */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 30px;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-red), #ff6b70);
+    color: #ffffff;
+    box-shadow: 0 6px 18px rgba(255, 82, 88, 0.35);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 24px rgba(255, 82, 88, 0.45);
+}
+
+.btn-outline {
+    background-color: #ffffff;
+    color: var(--text-dark);
+    border: 2px solid #e5e7eb;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.btn-outline:hover {
+    background-color: #ffffff;
+    border-color: var(--primary-red);
+    color: var(--primary-red);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 16px rgba(255, 82, 88, 0.15);
+}
+
+/* Tarjeta flotante con halo navideño */
+.hero-image-wrapper {
+    flex: 0.9;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.hero-image-card {
+    background-color: #ffffff;
+    border-radius: 24px;
+    padding: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08), 0 0 25px rgba(245, 158, 11, 0.15);
+    width: 100%;
+    max-width: 370px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 3px solid #ffffff;
+}
+
+.hero-image-card:hover {
+    transform: translateY(-8px) rotate(1deg);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12), 0 0 35px rgba(255, 82, 88, 0.2);
+}
+
+.hero-image-card img {
+    width: 100%;
+    height: auto;
+    max-height: 290px;
+    object-fit: contain;
+    border-radius: 16px;
+}
+
+/* ==========================================================================
+   TÍTULOS DE SECCIÓN DECORADOS
+   ========================================================================== */
+.section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 26px;
+    border-bottom: 2px dashed #f1f3f5;
+    padding-bottom: 12px;
+}
+
+.section-title {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: #111827;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   SECCIÓN CATEGORÍAS (TARJETAS LINDAS)
+   ========================================================================== */
+.categories-section {
+    margin-bottom: 65px;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.category-card {
+    background: #ffffff;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1.5px solid #f3f4f6;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.1);
+    border-color: #ffd4d6;
+}
+
+.category-img-container {
+    width: 100%;
+    height: 155px;
+    overflow: hidden;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+}
+
+.category-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.4s ease;
+}
+
+.category-card:hover .category-img-container img {
+    transform: scale(1.08);
+}
+
+.category-meta {
+    padding: 12px 14px;
+    text-align: center;
+    background: #ffffff;
+    border-top: 1px solid #f9fafb;
+}
+
+.category-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 3px;
+    transition: color 0.2s;
+}
+
+.category-card:hover .category-title {
+    color: var(--primary-red);
+}
+
+.category-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   SECCIÓN REGALOS DESTACADOS (TARJETAS DE PRODUCTO DECORADAS)
+   ========================================================================== */
+.products-section {
+    margin-bottom: 75px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.product-card {
+    background-color: #ffffff;
+    border-radius: var(--radius-md);
+    padding: 18px;
+    box-shadow: var(--card-shadow);
+    border: 2px solid #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 36px rgba(255, 82, 88, 0.14);
+    border-color: #ffccd0;
+}
+
+/* Badges redondeados y festivos */
+.product-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    color: #ef4444;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 4px 11px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    z-index: 2;
+    box-shadow: 0 2px 6px rgba(239, 68, 68, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.badge-green {
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+    color: #15803d;
+    box-shadow: 0 2px 6px rgba(21, 128, 61, 0.2);
+}
+
+.badge-gold {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    color: #b45309;
+    box-shadow: 0 2px 6px rgba(180, 83, 9, 0.2);
+}
+
+.product-img-box {
+    width: 100%;
+    height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 16px;
+    margin-bottom: 14px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-img-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-img-box img {
+    transform: scale(1.08);
+}
+
+/* Calificación por estrellas */
+.product-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.product-rating i {
+    color: var(--gold-accent);
+    font-size: 0.8rem;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.product-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.35;
+    margin: 0;
+    min-height: 44px;
+}
+
+.product-description {
+    font-size: 0.82rem;
+    color: #6b7280;
+    line-height: 1.45;
+    margin-bottom: 8px;
+}
+
+/* Precios con descuento */
+.price-container {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: 4px 0 10px 0;
+}
+
+.current-price {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #111827;
+}
+
+.old-price {
+    font-size: 0.9rem;
+    color: #9ca3af;
+    text-decoration: line-through;
+    font-weight: 500;
+}
+
+.btn-add-cart {
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary-red), #ff6b70);
+    color: #ffffff;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 14px rgba(255, 82, 88, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-add-cart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(255, 82, 88, 0.45);
+}
+
+/* ==========================================================================
+   FOOTER / CONTACTO DECORADO
+   ========================================================================== */
+.contact-section {
+    background: linear-gradient(135deg, #e8f7ee 0%, #e1f4e9 60%, #eaf8f0 100%);
+    border-radius: var(--radius-lg);
+    padding: 45px 55px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 35px;
+    flex-wrap: wrap;
+    box-shadow: 0 8px 25px rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    position: relative;
+}
+
+.contact-info {
+    flex: 1;
+    min-width: 250px;
+}
+
+.contact-title {
+    font-size: 1.45rem;
+    font-weight: 800;
+    margin-bottom: 14px;
+    color: #111827;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.contact-links {
+    list-style: none;
+}
+
+.contact-links li {
+    margin-bottom: 8px;
+}
+
+.contact-links a {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 0.93rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+}
+
+.contact-links a:hover {
+    color: var(--primary-red);
+    transform: translateX(4px);
+}
+
+.contact-links i {
+    color: var(--primary-green);
+    font-size: 1rem;
+}
+
+.newsletter-box {
+    flex: 1;
+    min-width: 280px;
+    max-width: 480px;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 12px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    background-color: #ffffff;
+    border: 1.5px solid #d1d5db;
+    border-radius: var(--radius-sm);
+    padding: 12px 18px;
+    font-size: 0.92rem;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.newsletter-form input:focus {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+}
+
+.btn-subscribe {
+    background: linear-gradient(135deg, var(--primary-green), #16a34a);
+    color: #ffffff;
+    border-radius: var(--radius-sm);
+    padding: 12px 24px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.35);
+}
+
+.btn-subscribe:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(34, 197, 94, 0.45);
+}
+
+.newsletter-message {
+    margin-top: 10px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    min-height: 20px;
+}
+
+.newsletter-message.success {
+    color: #15803d;
+}
+
+/* ==========================================================================
+   BOTÓN FLOTANTE DE WHATSAPP CON GORRITO 💬🎅
+   ========================================================================== */
+.floating-whatsapp {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: #ffffff;
+    padding: 10px 18px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.88rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+    z-index: 1000;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid #ffffff;
+}
+
+.floating-whatsapp:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(37, 211, 102, 0.45);
+}
+
+.floating-whatsapp i {
+    font-size: 1.2rem;
+}
+
+/* ==========================================================================
+   MODAL DEL CARRITO FESTIVO
+   ========================================================================== */
+.cart-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 20000;
+    padding: 20px;
+}
+
+.cart-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cart-modal {
+    background: #ffffff;
+    width: 100%;
+    max-width: 530px;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    max-height: 85vh;
+    overflow: hidden;
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid #ffffff;
+}
+
+.cart-modal-overlay.active .cart-modal {
+    transform: translateY(0) scale(1);
+}
+
+.cart-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 26px;
+    background: linear-gradient(135deg, #eaf7ef, #e0f5e7);
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.cart-modal-header h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #111827;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.close-modal-btn {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #6b7280;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.close-modal-btn:hover {
+    color: var(--primary-red);
+}
+
+.cart-modal-body {
+    padding: 22px 26px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.empty-cart-msg {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #f3f4f6;
+    gap: 14px;
+}
+
+.cart-item-img {
+    width: 54px;
+    height: 54px;
+    object-fit: contain;
+    border-radius: 10px;
+    background-color: #f9fafb;
+    border: 1px solid #f0f0f0;
+    padding: 3px;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+}
+
+.cart-item-price {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.cart-item-qty {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.qty-btn {
+    width: 28px;
+    height: 28px;
+    background-color: #f3f4f6;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.qty-btn:hover {
+    background-color: #e5e7eb;
+    color: var(--primary-red);
+}
+
+.remove-btn {
+    color: #ef4444;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    font-size: 1.05rem;
+    transition: color 0.2s;
+}
+
+.remove-btn:hover {
+    color: #b91c1c;
+}
+
+.cart-modal-footer {
+    padding: 20px 26px;
+    border-top: 1px solid #f3f4f6;
+    background-color: #fafafa;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.15rem;
+    margin-bottom: 16px;
+}
+
+.cart-total strong {
+    color: var(--primary-red);
+    font-size: 1.4rem;
+}
+
+.cart-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-clear-cart {
+    background-color: #f3f4f6;
+    color: #4b5563;
+    flex: 1;
+}
+
+.btn-clear-cart:hover {
+    background-color: #e5e7eb;
+}
+
+.btn-checkout {
+    background: linear-gradient(135deg, var(--primary-green), #16a34a);
+    color: #ffffff;
+    flex: 1.6;
+}
+
+.btn-checkout:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.35);
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATION FLOTANTE
+   ========================================================================== */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #111827;
+    color: #ffffff;
+    padding: 14px 24px;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 30000;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.toast i {
+    color: var(--primary-green);
+    font-size: 1.3rem;
+}
+
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (TABLETS Y MÓVILES)
+   ========================================================================== */
+@media (max-width: 992px) {
+    .hero-section {
+        flex-direction: column;
+        padding: 45px 30px;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-title {
+        font-size: 2.6rem;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .categories-grid,
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+
+    .nav-menu {
+        justify-content: center;
+    }
+
+    .header-actions {
+        justify-content: space-between;
+    }
+
+    .search-box input {
+        width: 100%;
+    }
+
+    .search-box input:focus {
+        width: 100%;
+    }
+
+    .hero-title {
+        font-size: 2.1rem;
+    }
+
+    .categories-grid,
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-section {
+        flex-direction: column;
+        padding: 30px 20px;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .btn-subscribe {
+        width: 100%;
+    }
+
+    .top-announcement-bar {
+        font-size: 0.76rem;
+        flex-direction: column;
+        gap: 4px;
+    }
+}

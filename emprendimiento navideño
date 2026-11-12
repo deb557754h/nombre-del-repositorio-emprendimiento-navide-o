@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regalos con magia navideña 🎄✨</title>
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- ==================== ESTILOS CSS FESTIVOS ==================== -->
+    <style>
+        :root {
+            --primary-red: #ff5258;
+            /* Rojo coral festivo */
+            --primary-red-hover: #e0383e;
+            --primary-green: #22c55e;
+            /* Verde pino brillante */
+            --primary-green-hover: #16a34a;
+            --gold-accent: #f59e0b;
+            /* Dorado brillante de campanas y estrellas */
+            --gold-glow: rgba(245, 158, 11, 0.35);
+            --mint-bg: #eaf7ef;
+            /* Fondo verde claro del banner y footer */
+            --light-nav-bg: #fdf2f2;
+            /* Fondo pastel de los botones de navegación */
+            --light-gray-bg: #f3f4f6;
+            /* Fondo del buscador */
+            --text-dark: #1f2937;
+            /* Texto oscuro principal */
+            --text-muted: #6b7280;
+            /* Texto secundario */
+            --border-color: #f1f3f5;
+            --card-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+            --hover-shadow: 0 16px 32px rgba(255, 82, 88, 0.15);
+            --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --radius-sm: 10px;
+            --radius-md: 18px;
+            --radius-lg: 28px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: radial-gradient(circle at 10% 20%, #ffffff 0%, #fffafa 50%, #f7fdf9 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: 60px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Canvas de Nieve suave */
+        #snowCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* BARRA SUPERIOR DE ANUNCIOS */
+        .top-announcement-bar {
+            background: linear-gradient(90deg, #ff5258, #ff7a7e, #22c55e);
+            color: #ffffff;
+            text-align: center;
+            padding: 7px 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 2px 8px rgba(255, 82, 88, 0.2);
+        }
+
+        .top-announcement-bar .badge-coupon {
+            background-color: #ffffff;
+            color: #ff5258;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.78rem;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        .snow-toggle-btn {
+            position: fixed;
+            top: 45px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #4b5563;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s ease;
+        }
+
+        .snow-toggle-btn:hover {
+            background: #ffffff;
+            color: var(--primary-red);
+            transform: scale(1.05);
+        }
+
+        /* HEADER / NAVEGACIÓN */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 20px;
+            gap: 15px;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .logo-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .santa-hat {
+            position: absolute;
+            top: -15px;
+            left: -12px;
+            font-size: 1.6rem;
+            transform: rotate(-15deg);
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+            pointer-events: none;
+            animation: wiggle 3s infinite ease-in-out;
+        }
+
+        @keyframes wiggle {
+
+            0%,
+            100% {
+                transform: rotate(-15deg);
+            }
+
+            50% {
+                transform: rotate(-8deg) scale(1.05);
+            }
+        }
+
+        .logo {
+            background: linear-gradient(135deg, var(--primary-red), #ff767a);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.15rem;
+            letter-spacing: 1.5px;
+            padding: 10px 34px;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(255, 82, 88, 0.35);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            border: 2px solid #ffffff;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 6px 18px rgba(255, 82, 88, 0.45);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            background-color: var(--light-nav-bg);
+            padding: 9px 24px;
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(255, 82, 88, 0.08);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: #fee9e9;
+            color: var(--primary-red);
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(255, 82, 88, 0.15);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            color: #9ca3af;
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+
+        .search-box input {
+            background-color: var(--light-gray-bg);
+            border: 1.5px solid transparent;
+            padding: 10px 16px 10px 36px;
+            border-radius: var(--radius-sm);
+            font-size: 0.92rem;
+            font-family: inherit;
+            width: 145px;
+            transition: all 0.25s ease;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            width: 195px;
+            background-color: #ffffff;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px rgba(255, 82, 88, 0.15);
+        }
+
+        .cart-btn {
+            background: linear-gradient(135deg, var(--primary-green), #16a34a);
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            padding: 10px 22px;
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35);
+            transition: all 0.25s ease;
+        }
+
+        .cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(34, 197, 94, 0.45);
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            background: linear-gradient(135deg, #e8f7ee 0%, #e1f4e9 60%, #ebf8f0 100%);
+            border-radius: var(--radius-lg);
+            padding: 60px 65px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            margin-top: 15px;
+            margin-bottom: 55px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .hero-decor-garland {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: repeating-linear-gradient(90deg, #ff5258 0px, #ff5258 20px, #f59e0b 20px, #f59e0b 40px, #22c55e 40px, #22c55e 60px, #38bdf8 60px, #38bdf8 80px);
+            opacity: 0.7;
+        }
+
+        .hero-content {
+            flex: 1.1;
+            max-width: 530px;
+            z-index: 2;
+        }
+
+        .hero-countdown-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: #ffffff;
+            color: #b45309;
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            margin-bottom: 18px;
+            border: 1px solid #fef3c7;
+        }
+
+        .hero-countdown-tag i {
+            color: var(--gold-accent);
+        }
+
+        .hero-title {
+            font-size: 3.3rem;
+            font-weight: 800;
+            line-height: 1.15;
+            color: #111827;
+            margin-bottom: 18px;
+            letter-spacing: -0.5px;
+        }
+
+        .sparkle-icon {
+            display: inline-block;
+            color: var(--gold-accent);
+            animation: sparkle 2s infinite ease-in-out;
+        }
+
+        @keyframes sparkle {
+
+            0%,
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+
+            50% {
+                transform: scale(1.25) rotate(15deg);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.08rem;
+            color: #4b5563;
+            margin-bottom: 32px;
+            line-height: 1.55;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 30px;
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: inherit;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-red), #ff6b70);
+            color: #ffffff;
+            box-shadow: 0 6px 18px rgba(255, 82, 88, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 24px rgba(255, 82, 88, 0.45);
+        }
+
+        .btn-outline {
+            background-color: #ffffff;
+            color: var(--text-dark);
+            border: 2px solid #e5e7eb;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .btn-outline:hover {
+            background-color: #ffffff;
+            border-color: var(--primary-red);
+            color: var(--primary-red);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 16px rgba(255, 82, 88, 0.15);
+        }
+
+        .hero-image-wrapper {
+            flex: 0.9;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-image-card {
+            background-color: #ffffff;
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08), 0 0 25px rgba(245, 158, 11, 0.15);
+            width: 100%;
+            max-width: 370px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 3px solid #ffffff;
+        }
+
+        .hero-image-card:hover {
+            transform: translateY(-8px) rotate(1deg);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12), 0 0 35px rgba(255, 82, 88, 0.2);
+        }
+
+        .hero-image-card img {
+            width: 100%;
+            height: auto;
+            max-height: 290px;
+            object-fit: contain;
+            border-radius: 16px;
+        }
+
+        /* TÍTULOS */
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 26px;
+            border-bottom: 2px dashed #f1f3f5;
+            padding-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: #111827;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* CATEGORÍAS */
+        .categories-section {
+            margin-bottom: 65px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .category-card {
+            background: #ffffff;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1.5px solid #f3f4f6;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.1);
+            border-color: #ffd4d6;
+        }
+
+        .category-img-container {
+            width: 100%;
+            height: 155px;
+            overflow: hidden;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+        }
+
+        .category-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform 0.4s ease;
+        }
+
+        .category-card:hover .category-img-container img {
+            transform: scale(1.08);
+        }
+
+        .category-meta {
+            padding: 12px 14px;
+            text-align: center;
+            background: #ffffff;
+            border-top: 1px solid #f9fafb;
+        }
+
+        .category-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 3px;
+            transition: color 0.2s;
+        }
+
+        .category-card:hover .category-title {
+            color: var(--primary-red);
+        }
+
+        .category-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* REGALOS DESTACADOS */
+        .products-section {
+            margin-bottom: 75px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .product-card {
+            background-color: #ffffff;
+            border-radius: var(--radius-md);
+            padding: 18px;
+            box-shadow: var(--card-shadow);
+            border: 2px solid #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 36px rgba(255, 82, 88, 0.14);
+            border-color: #ffccd0;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            color: #ef4444;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 4px 11px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            z-index: 2;
+            box-shadow: 0 2px 6px rgba(239, 68, 68, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .badge-green {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            color: #15803d;
+            box-shadow: 0 2px 6px rgba(21, 128, 61, 0.2);
+        }
+
+        .badge-gold {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            color: #b45309;
+            box-shadow: 0 2px 6px rgba(180, 83, 9, 0.2);
+        }
+
+        .product-img-box {
+            width: 100%;
+            height: 180px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 16px;
+            margin-bottom: 14px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-img-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-img-box img {
+            transform: scale(1.08);
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .product-rating i {
+            color: var(--gold-accent);
+            font-size: 0.8rem;
+        }
+
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .product-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #111827;
+            line-height: 1.35;
+            margin: 0;
+            min-height: 44px;
+        }
+
+        .product-description {
+            font-size: 0.82rem;
+            color: #6b7280;
+            line-height: 1.45;
+            margin-bottom: 8px;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin: 4px 0 10px 0;
+        }
+
+        .current-price {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #111827;
+        }
+
+        .old-price {
+            font-size: 0.9rem;
+            color: #9ca3af;
+            text-decoration: line-through;
+            font-weight: 500;
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-red), #ff6b70);
+            color: #ffffff;
+            padding: 12px 16px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-radius: var(--radius-sm);
+            box-shadow: 0 4px 14px rgba(255, 82, 88, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-add-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 18px rgba(255, 82, 88, 0.45);
+        }
+
+        /* FOOTER / CONTACTO */
+        .contact-section {
+            background: linear-gradient(135deg, #e8f7ee 0%, #e1f4e9 60%, #eaf8f0 100%);
+            border-radius: var(--radius-lg);
+            padding: 45px 55px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 35px;
+            flex-wrap: wrap;
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .contact-title {
+            font-size: 1.45rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+            color: #111827;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-links {
+            list-style: none;
+        }
+
+        .contact-links li {
+            margin-bottom: 8px;
+        }
+
+        .contact-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-size: 0.93rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .contact-links a:hover {
+            color: var(--primary-red);
+            transform: translateX(4px);
+        }
+
+        .contact-links i {
+            color: var(--primary-green);
+            font-size: 1rem;
+        }
+
+        .newsletter-box {
+            flex: 1;
+            min-width: 280px;
+            max-width: 480px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            background-color: #ffffff;
+            border: 1.5px solid #d1d5db;
+            border-radius: var(--radius-sm);
+            padding: 12px 18px;
+            font-size: 0.92rem;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+        }
+
+        .btn-subscribe {
+            background: linear-gradient(135deg, var(--primary-green), #16a34a);
+            color: #ffffff;
+            border-radius: var(--radius-sm);
+            padding: 12px 24px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.35);
+        }
+
+        .btn-subscribe:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(34, 197, 94, 0.45);
+        }
+
+        .newsletter-message {
+            margin-top: 10px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            min-height: 20px;
+        }
+
+        .newsletter-message.success {
+            color: #15803d;
+        }
+
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: #ffffff;
+            padding: 10px 18px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid #ffffff;
+        }
+
+        .floating-whatsapp:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.45);
+        }
+
+        .floating-whatsapp i {
+            font-size: 1.2rem;
+        }
+
+        /* MODAL DEL CARRITO */
+        .cart-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 20000;
+            padding: 20px;
+        }
+
+        .cart-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-modal {
+            background: #ffffff;
+            width: 100%;
+            max-width: 530px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-direction: column;
+            max-height: 85vh;
+            overflow: hidden;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid #ffffff;
+        }
+
+        .cart-modal-overlay.active .cart-modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .cart-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 26px;
+            background: linear-gradient(135deg, #eaf7ef, #e0f5e7);
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .cart-modal-header h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #111827;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .close-modal-btn {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: #6b7280;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+
+        .close-modal-btn:hover {
+            color: var(--primary-red);
+        }
+
+        .cart-modal-body {
+            padding: 22px 26px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .empty-cart-msg {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid #f3f4f6;
+            gap: 14px;
+        }
+
+        .cart-item-img {
+            width: 54px;
+            height: 54px;
+            object-fit: contain;
+            border-radius: 10px;
+            background-color: #f9fafb;
+            border: 1px solid #f0f0f0;
+            padding: 3px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .cart-item-price {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-btn {
+            width: 28px;
+            height: 28px;
+            background-color: #f3f4f6;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .qty-btn:hover {
+            background-color: #e5e7eb;
+            color: var(--primary-red);
+        }
+
+        .remove-btn {
+            color: #ef4444;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            font-size: 1.05rem;
+            transition: color 0.2s;
+        }
+
+        .remove-btn:hover {
+            color: #b91c1c;
+        }
+
+        .cart-modal-footer {
+            padding: 20px 26px;
+            border-top: 1px solid #f3f4f6;
+            background-color: #fafafa;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.15rem;
+            margin-bottom: 16px;
+        }
+
+        .cart-total strong {
+            color: var(--primary-red);
+            font-size: 1.4rem;
+        }
+
+        .cart-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-clear-cart {
+            background-color: #f3f4f6;
+            color: #4b5563;
+            flex: 1;
+        }
+
+        .btn-clear-cart:hover {
+            background-color: #e5e7eb;
+        }
+
+        .btn-checkout {
+            background: linear-gradient(135deg, var(--primary-green), #16a34a);
+            color: #ffffff;
+            flex: 1.6;
+        }
+
+        .btn-checkout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.35);
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #111827;
+            color: #ffffff;
+            padding: 14px 24px;
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 30000;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .toast i {
+            color: var(--primary-green);
+            font-size: 1.3rem;
+        }
+
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .hero-section {
+                flex-direction: column;
+                padding: 45px 30px;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-title {
+                font-size: 2.6rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .categories-grid,
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 16px;
+            }
+
+            .nav-menu {
+                justify-content: center;
+            }
+
+            .header-actions {
+                justify-content: space-between;
+            }
+
+            .search-box input {
+                width: 100%;
+            }
+
+            .search-box input:focus {
+                width: 100%;
+            }
+
+            .hero-title {
+                font-size: 2.1rem;
+            }
+
+            .categories-grid,
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-section {
+                flex-direction: column;
+                padding: 30px 20px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .btn-subscribe {
+                width: 100%;
+            }
+
+            .top-announcement-bar {
+                font-size: 0.76rem;
+                flex-direction: column;
+                gap: 4px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Canvas de Nieve suave -->
+    <canvas id="snowCanvas"></canvas>
+
+    <!-- Barra superior de anuncios y descuentos -->
+    <div class="top-announcement-bar">
+        <span>✨ ¡Especial de Navidad! Envíos GRATIS a todo el país en pedidos mayores a $50 🎁</span>
+        <span>|</span>
+        <span>🎄 Cupón: <span class="badge-coupon">MAGIA2026</span> para 10% OFF</span>
+    </div>
+
+    <!-- Botón flotante para pausar o activar la nieve -->
+    <button class="snow-toggle-btn" id="snowToggleBtn" title="Activar/Desactivar efecto de nieve">
+        <i class="fa-regular fa-snowflake"></i> Nieve: On
+    </button>
+
+    <!-- ==================== HEADER / BARRA DE NAVEGACIÓN ==================== -->
+    <header class="header container">
+        <div class="logo-wrapper">
+            <span class="santa-hat">🎅</span>
+            <div class="logo">LOGO</div>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="#inicio" class="nav-link active">Inicio</a>
+            <a href="#regalos" class="nav-link">Regalos</a>
+            <a href="#packs" class="nav-link">Packs</a>
+            <a href="#contacto" class="nav-link">Contacto</a>
+        </nav>
+
+        <div class="header-actions">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Buscar regalo...">
+            </div>
+            <button class="cart-btn" id="openCartBtn">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span>Carrito (<span id="cartCount">0</span>)</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ==================== CONTENIDO PRINCIPAL ==================== -->
+    <main class="container">
+
+        <!-- ===== HERO SECTION (BANNER PRINCIPAL DECORADO) ===== -->
+        <section class="hero-section" id="inicio">
+            <div class="hero-decor-garland"></div>
+            <div class="hero-content">
+                <div class="hero-countdown-tag">
+                    <i class="fa-solid fa-sleigh"></i>
+                    <span>Faltan: <strong id="countdownDays">calculando...</strong> para Navidad</span>
+                </div>
+                <h1 class="hero-title">Regalos con<br>magia navideña <span class="sparkle-icon">✨</span></h1>
+                <p class="hero-subtitle">Detalles únicos, dulces y personalizados hechos con amor para llenar de ilusión
+                    el corazón de quienes más quieres en estas fiestas.</p>
+                <div class="hero-buttons">
+                    <a href="#regalos" class="btn btn-primary">
+                        <i class="fa-solid fa-gift"></i> Ver regalos
+                    </a>
+                    <button class="btn btn-outline" id="btnArmarPack">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Armar un pack
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <div class="hero-image-card">
+                    <img src="img/hero_regalos.jpg" alt="Cajas de regalos navideños con lazos dorados" id="heroImg"
+                        onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1543257580-7269da773bf5?auto=format&fit=crop&w=700&q=80';">
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SECCIÓN CATEGORÍAS ===== -->
+        <section class="categories-section" id="packs">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-boxes-packing" style="color: var(--primary-red);"></i> Categorías
+                </h2>
+                <span class="section-subtitle">Colecciones temáticas para cada ser especial</span>
+            </div>
+            <div class="categories-grid">
+
+                <!-- Categoría 1: Perfumería & Belleza -->
+                <div class="category-card" data-category="perfumes">
+                    <div class="category-img-container">
+                        <img src="img/cat_perfumes.jpg" alt="Perfumes y sets de regalo navideños"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80';">
+                    </div>
+                    <div class="category-meta">
+                        <h4 class="category-title">Perfumería & Sets</h4>
+                        <p class="category-desc">Aromas y elegancia de lujo ✨</p>
+                    </div>
+                </div>
+
+                <!-- Categoría 2: Mascotas -->
+                <div class="category-card" data-category="mascotas">
+                    <div class="category-img-container">
+                        <img src="img/cat_mascotas.jpg" alt="Regalos y snacks para mascotas"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=600&q=80';">
+                    </div>
+                    <div class="category-meta">
+                        <h4 class="category-title">Mundo Pet Navideño</h4>
+                        <p class="category-desc">Premios para consentirlos 🐾</p>
+                    </div>
+                </div>
+
+                <!-- Categoría 3: Magia Infantil -->
+                <div class="category-card" data-category="ninos">
+                    <div class="category-img-container">
+                        <img src="img/cat_ninos.jpg" alt="Niños abriendo regalo navideño con luces mágicas"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=600&q=80';">
+                    </div>
+                    <div class="category-meta">
+                        <h4 class="category-title">Ilusión Infantil</h4>
+                        <p class="category-desc">Sonrisas y magia pura 🧸</p>
+                    </div>
+                </div>
+
+                <!-- Categoría 4: Calendarios de Adviento y Juguetes -->
+                <div class="category-card" data-category="advent">
+                    <div class="category-img-container">
+                        <img src="img/cat_advent.jpg" alt="Calendario de adviento y coleccionables"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=600&q=80';">
+                    </div>
+                    <div class="category-meta">
+                        <h4 class="category-title">Calendarios de Adviento</h4>
+                        <p class="category-desc">24 sorpresas diarias 🏎️</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== SECCIÓN REGALOS DESTACADOS ===== -->
+        <section class="products-section" id="regalos">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-candy-cane" style="color: var(--primary-red);"></i> Regalos destacados
+                </h2>
+                <span class="section-subtitle">Los favoritos para compartir en Nochebuena</span>
+            </div>
+            <div class="products-grid" id="productsGrid">
+
+                <!-- Producto 1: Árbol Navideño -->
+                <div class="product-card" data-id="1" data-name="Árbol Nevado Nórdico Imperial" data-price="49.99">
+                    <span class="product-badge">🔥 -38% OFF</span>
+                    <div class="product-img-box">
+                        <img src="img/prod_arbol.jpg" alt="Árbol de Navidad decorado"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1576919228236-a097c32a5cd4?auto=format&fit=crop&w=600&q=80';">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span>4.9 (148)</span>
+                        </div>
+                        <h3 class="product-name">Árbol Nevado Nórdico Imperial</h3>
+                        <p class="product-description">Efecto escarcha invernal realista con follaje tupido y base
+                            metálica reforzada.</p>
+                        <div class="price-container">
+                            <span class="current-price">$49.99</span>
+                            <span class="old-price">$79.99</span>
+                        </div>
+                        <button class="btn btn-add-cart">
+                            <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Producto 2: Galletas Navideñas -->
+                <div class="product-card" data-id="2" data-name="Cofre Dulzura Navideña Artesanal" data-price="21.50">
+                    <span class="product-badge badge-gold">🍪 100% ARTESANAL</span>
+                    <div class="product-img-box">
+                        <img src="img/prod_galletas.jpg" alt="Caja de galletas navideñas decoradas"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&w=600&q=80';">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span>5.0 (92)</span>
+                        </div>
+                        <h3 class="product-name">Cofre Dulzura Navideña Artesanal</h3>
+                        <p class="product-description">Fina selección de galletas de mantequilla y canela decoradas a
+                            mano con glaseado real.</p>
+                        <div class="price-container">
+                            <span class="current-price">$21.50</span>
+                            <span class="old-price">$30.00</span>
+                        </div>
+                        <button class="btn btn-add-cart">
+                            <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Producto 3: Set Gorros y Accesorios -->
+                <div class="product-card" data-id="3" data-name="Kit Festivo Santa Glow con Luces LED"
+                    data-price="14.99">
+                    <span class="product-badge badge-green">⭐ MÁS VENDIDO</span>
+                    <div class="product-img-box">
+                        <img src="img/prod_gorro.jpg" alt="Gorro festivo navideño"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80';">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                            <span>4.8 (215)</span>
+                        </div>
+                        <h3 class="product-name">Kit Festivo Santa Glow con Luces LED</h3>
+                        <p class="product-description">Gorro de felpa plush extra suave y diademas luminosas para
+                            celebrar la Nochebuena.</p>
+                        <div class="price-container">
+                            <span class="current-price">$14.99</span>
+                            <span class="old-price">$22.00</span>
+                        </div>
+                        <button class="btn btn-add-cart">
+                            <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Producto 4: Tazas Navideñas -->
+                <div class="product-card" data-id="4" data-name="Dúo de Tazas Ho Ho Ho & Bastones" data-price="23.90">
+                    <span class="product-badge">✨ REGALO IDEAL</span>
+                    <div class="product-img-box">
+                        <img src="img/prod_tazas.jpg" alt="Tazas navideñas festivas"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80';">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span>4.9 (104)</span>
+                        </div>
+                        <h3 class="product-name">Dúo de Tazas "Ho Ho Ho" & Bastones</h3>
+                        <p class="product-description">Cerámica premium de 350ml para chocolate caliente, incluye 2
+                            bastones de caramelo.</p>
+                        <div class="price-container">
+                            <span class="current-price">$23.90</span>
+                            <span class="old-price">$34.00</span>
+                        </div>
+                        <button class="btn btn-add-cart">
+                            <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== SECCIÓN FOOTER / CONTACTO ===== -->
+        <footer class="contact-section" id="contacto">
+            <div class="contact-info">
+                <h3 class="contact-title">
+                    <i class="fa-solid fa-holly-berry" style="color: var(--primary-red);"></i> Contáctanos
+                </h3>
+                <ul class="contact-links">
+                    <li><a href="#"><i class="fa-regular fa-envelope"></i> Correo, WhatsApp, Instagram</a></li>
+                    <li><a href="#"><i class="fa-solid fa-truck-fast"></i> Envíos nacionales y devoluciones</a></li>
+                    <li><a href="#"><i class="fa-regular fa-circle-question"></i> Preguntas frecuentes & Ayuda</a></li>
+                </ul>
+            </div>
+            <div class="newsletter-box">
+                <form id="newsletterForm" class="newsletter-form">
+                    <input type="email" id="newsletterEmail" placeholder="Tu correo electrónico..." required>
+                    <button type="submit" class="btn btn-subscribe">
+                        <i class="fa-regular fa-paper-plane"></i> Suscribirme
+                    </button>
+                </form>
+                <p id="newsletterMsg" class="newsletter-message"></p>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Botón flotante para WhatsApp con gorrito -->
+    <a href="https://wa.me/" target="_blank" class="floating-whatsapp" title="Escríbenos por WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>¿Dudas? Chatea con Santa</span>
+    </a>
+
+    <!-- ==================== MODAL DEL CARRITO FESTIVO ==================== -->
+    <div class="cart-modal-overlay" id="cartModalOverlay">
+        <div class="cart-modal">
+            <div class="cart-modal-header">
+                <h3><i class="fa-solid fa-gift" style="color: var(--primary-red);"></i> Tu Carrito Navideño</h3>
+                <button class="close-modal-btn" id="closeCartBtn">&times;</button>
+            </div>
+            <div class="cart-modal-body" id="cartItemsContainer">
+                <div class="empty-cart-msg">
+                    <i class="fa-solid fa-sleigh" style="font-size: 2.8rem; color: #ff5258; margin-bottom: 12px;"></i>
+                    <p style="font-weight: 700; font-size: 1.1rem; color: #111827;">Tu trineo está vacío</p>
+                    <small style="color: #6b7280;">¡Elige tus regalos favoritos para comenzar a empacar la
+                        magia!</small>
+                </div>
+            </div>
+            <div class="cart-modal-footer">
+                <div class="cart-total">
+                    <span>Total a pagar:</span>
+                    <strong id="cartTotalPrice">$0.00</strong>
+                </div>
+                <div class="cart-actions">
+                    <button class="btn btn-clear-cart" id="clearCartBtn">Vaciar trineo</button>
+                    <button class="btn btn-checkout" id="checkoutBtn">Finalizar Compra 🎁</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== NOTIFICACIÓN TOAST FLOTANTE ==================== -->
+    <div id="toastNotification" class="toast">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toastMessage">¡Producto agregado al carrito!</span>
+    </div>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let cart = [];
+
+            const cartCountEl = document.getElementById('cartCount');
+            const openCartBtn = document.getElementById('openCartBtn');
+            const closeCartBtn = document.getElementById('closeCartBtn');
+            const cartModalOverlay = document.getElementById('cartModalOverlay');
+            const cartItemsContainer = document.getElementById('cartItemsContainer');
+            const cartTotalPriceEl = document.getElementById('cartTotalPrice');
+            const clearCartBtn = document.getElementById('clearCartBtn');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            const toast = document.getElementById('toastNotification');
+            const toastMessage = document.getElementById('toastMessage');
+            const searchInput = document.getElementById('searchInput');
+            const newsletterForm = document.getElementById('newsletterForm');
+            const newsletterEmail = document.getElementById('newsletterEmail');
+            const newsletterMsg = document.getElementById('newsletterMsg');
+            const btnArmarPack = document.getElementById('btnArmarPack');
+            const snowToggleBtn = document.getElementById('snowToggleBtn');
+            const countdownEl = document.getElementById('countdownDays');
+
+            // 1. Efecto Nieve Suave
+            const canvas = document.getElementById('snowCanvas');
+            let ctx = null;
+            let snowflakes = [];
+            let snowActive = true;
+            let animationFrameId = null;
+
+            if (canvas) {
+                ctx = canvas.getContext('2d');
+
+                function resizeCanvas() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                }
+                resizeCanvas();
+                window.addEventListener('resize', resizeCanvas);
+
+                const totalFlakes = Math.min(window.innerWidth / 18, 65);
+                for (let i = 0; i < totalFlakes; i++) {
+                    snowflakes.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        radius: Math.random() * 2.8 + 1,
+                        speedY: Math.random() * 0.9 + 0.4,
+                        speedX: Math.random() * 0.6 - 0.3,
+                        opacity: Math.random() * 0.6 + 0.3
+                    });
+                }
+
+                function drawSnow() {
+                    if (!snowActive) return;
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    snowflakes.forEach(flake => {
+                        ctx.beginPath();
+                        ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(255, 255, 255, ${flake.opacity})`;
+                        ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
+                        ctx.shadowBlur = 4;
+                        ctx.fill();
+
+                        flake.y += flake.speedY;
+                        flake.x += flake.speedX;
+
+                        if (flake.y > canvas.height) {
+                            flake.y = -5;
+                            flake.x = Math.random() * canvas.width;
+                        }
+                        if (flake.x > canvas.width) flake.x = 0;
+                        if (flake.x < 0) flake.x = canvas.width;
+                    });
+
+                    animationFrameId = requestAnimationFrame(drawSnow);
+                }
+                drawSnow();
+
+                if (snowToggleBtn) {
+                    snowToggleBtn.addEventListener('click', () => {
+                        snowActive = !snowActive;
+                        if (snowActive) {
+                            snowToggleBtn.innerHTML = '<i class="fa-regular fa-snowflake"></i> Nieve: On';
+                            drawSnow();
+                        } else {
+                            snowToggleBtn.innerHTML = '<i class="fa-regular fa-snowflake"></i> Nieve: Off';
+                            ctx.clearRect(0, 0, canvas.width, canvas.height);
+                            cancelAnimationFrame(animationFrameId);
+                        }
+                    });
+                }
+            }
+
+            // 2. Cuenta Regresiva Navidad
+            function updateCountdown() {
+                if (!countdownEl) return;
+                const now = new Date();
+                const currentYear = now.getFullYear();
+                let christmas = new Date(currentYear, 11, 24, 23, 59, 59);
+
+                if (now > christmas) {
+                    christmas = new Date(currentYear + 1, 11, 24, 23, 59, 59);
+                }
+
+                const diff = christmas - now;
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / 1000 / 60) % 60);
+
+                countdownEl.textContent = `${days} días y ${hours}h ${minutes}m`;
+            }
+            updateCountdown();
+            setInterval(updateCountdown, 60000);
+
+            // 3. Confeti Festivo
+            function burstFestiveConfetti(x, y) {
+                const particles = ['✨', '⭐', '❄️', '🎁', '🔔', '🎄'];
+                for (let i = 0; i < 8; i++) {
+                    const particle = document.createElement('span');
+                    particle.textContent = particles[Math.floor(Math.random() * particles.length)];
+                    particle.style.position = 'fixed';
+                    particle.style.left = `${x}px`;
+                    particle.style.top = `${y}px`;
+                    particle.style.fontSize = `${Math.random() * 12 + 16}px`;
+                    particle.style.pointerEvents = 'none';
+                    particle.style.zIndex = '99999';
+                    particle.style.transition = 'all 0.85s cubic-bezier(0.25, 1, 0.5, 1)';
+                    particle.style.opacity = '1';
+
+                    document.body.appendChild(particle);
+
+                    const destX = (Math.random() - 0.5) * 160;
+                    const destY = (Math.random() - 0.8) * 160;
+
+                    requestAnimationFrame(() => {
+                        particle.style.transform = `translate(${destX}px, ${destY}px) scale(0.6) rotate(${Math.random() * 360}deg)`;
+                        particle.style.opacity = '0';
+                    });
+
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 900);
+                }
+            }
+
+            // 4. Carrito
+            function addToCart(product, event) {
+                const existingItem = cart.find(item => item.id === product.id);
+
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: product.id,
+                        name: product.name,
+                        price: parseFloat(product.price),
+                        img: product.img,
+                        quantity: 1
+                    });
+                }
+
+                updateCartUI();
+                showToast(`¡"${product.name}" agregado a tu carrito! 🎁`);
+
+                if (event) {
+                    burstFestiveConfetti(event.clientX, event.clientY);
+                }
+
+                openCartBtn.style.transform = 'scale(1.15) rotate(-3deg)';
+                setTimeout(() => {
+                    openCartBtn.style.transform = '';
+                }, 250);
+            }
+
+            function updateCartUI() {
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+                cartCountEl.textContent = totalItems;
+                cartTotalPriceEl.textContent = `$${totalPrice.toFixed(2)}`;
+
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = `
+                        <div class="empty-cart-msg">
+                            <i class="fa-solid fa-sleigh" style="font-size: 2.8rem; color: #ff5258; margin-bottom: 12px;"></i>
+                            <p style="font-weight: 700; font-size: 1.1rem; color: #111827;">Tu trineo está vacío</p>
+                            <small style="color: #6b7280;">¡Elige tus regalos favoritos para comenzar a empacar la magia!</small>
+                        </div>
+                    `;
+                } else {
+                    cartItemsContainer.innerHTML = '';
+                    cart.forEach(item => {
+                        const itemEl = document.createElement('div');
+                        itemEl.classList.add('cart-item');
+                        itemEl.innerHTML = `
+                            <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+                            <div class="cart-item-details">
+                                <div class="cart-item-title">${item.name}</div>
+                                <div class="cart-item-price">$${item.price.toFixed(2)} c/u</div>
+                            </div>
+                            <div class="cart-item-qty">
+                                <button class="qty-btn" data-action="decrease" data-id="${item.id}">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="qty-btn" data-action="increase" data-id="${item.id}">+</button>
+                            </div>
+                            <button class="remove-btn" data-id="${item.id}" title="Eliminar producto">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        `;
+                        cartItemsContainer.appendChild(itemEl);
+                    });
+                }
+            }
+
+            cartItemsContainer.addEventListener('click', (e) => {
+                const target = e.target.closest('button');
+                if (!target) return;
+
+                const id = target.getAttribute('data-id');
+                const action = target.getAttribute('data-action');
+
+                if (action === 'increase') {
+                    const item = cart.find(i => i.id === id);
+                    if (item) item.quantity += 1;
+                } else if (action === 'decrease') {
+                    const item = cart.find(i => i.id === id);
+                    if (item) {
+                        item.quantity -= 1;
+                        if (item.quantity <= 0) {
+                            cart = cart.filter(i => i.id !== id);
+                        }
+                    }
+                } else if (target.classList.contains('remove-btn') || target.closest('.remove-btn')) {
+                    cart = cart.filter(i => i.id !== id);
+                }
+
+                updateCartUI();
+            });
+
+            clearCartBtn.addEventListener('click', () => {
+                if (cart.length === 0) {
+                    showToast('El carrito ya está vacío ❄️');
+                    return;
+                }
+                if (confirm('¿Deseas vaciar tu carrito navideño?')) {
+                    cart = [];
+                    updateCartUI();
+                    showToast('Carrito vaciado con éxito ✨');
+                }
+            });
+
+            checkoutBtn.addEventListener('click', () => {
+                if (cart.length === 0) {
+                    alert('¡Tu carrito está vacío! Elige un regalo antes de continuar.');
+                    return;
+                }
+
+                const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                alert(`🎉 ¡Muchas gracias por tu compra navideña!\nTotal procesado: $${totalPrice.toFixed(2)}\n\n¡Tus regalos están siendo preparados con mucha magia y amor para estas fiestas! 🎄🎅🎁✨`);
+                cart = [];
+                updateCartUI();
+                closeModal();
+            });
+
+            function openModal() {
+                cartModalOverlay.classList.add('active');
+            }
+
+            function closeModal() {
+                cartModalOverlay.classList.remove('active');
+            }
+
+            openCartBtn.addEventListener('click', openModal);
+            closeCartBtn.addEventListener('click', closeModal);
+
+            cartModalOverlay.addEventListener('click', (e) => {
+                if (e.target === cartModalOverlay) {
+                    closeModal();
+                }
+            });
+
+            const addCartButtons = document.querySelectorAll('.btn-add-cart');
+            addCartButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const card = e.target.closest('.product-card');
+                    const imgEl = card.querySelector('.product-img-box img');
+                    const product = {
+                        id: card.getAttribute('data-id'),
+                        name: card.getAttribute('data-name') || card.querySelector('.product-name').textContent.trim(),
+                        price: card.getAttribute('data-price') || "25.00",
+                        img: imgEl ? imgEl.getAttribute('src') : 'img/hero_regalos.jpg'
+                    };
+                    addToCart(product, e);
+                });
+            });
+
+            let toastTimeout;
+            function showToast(message) {
+                toastMessage.textContent = message;
+                toast.classList.add('show');
+
+                clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3200);
+            }
+
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    const query = e.target.value.toLowerCase().trim();
+                    const productCards = document.querySelectorAll('.product-card');
+
+                    productCards.forEach(card => {
+                        const name = (card.getAttribute('data-name') || card.querySelector('.product-name').textContent).toLowerCase();
+                        const desc = (card.querySelector('.product-description')?.textContent || '').toLowerCase();
+                        const price = (card.getAttribute('data-price') || '').toLowerCase();
+
+                        if (name.includes(query) || desc.includes(query) || price.includes(query)) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const email = newsletterEmail.value.trim();
+
+                    if (email) {
+                        newsletterMsg.textContent = `¡Bienvenido a la familia navideña! Recibirás sorpresas y cupones en ${email} 🎄✨`;
+                        newsletterMsg.className = 'newsletter-message success';
+                        newsletterEmail.value = '';
+
+                        setTimeout(() => {
+                            newsletterMsg.textContent = '';
+                        }, 5500);
+                    }
+                });
+            }
+
+            if (btnArmarPack) {
+                btnArmarPack.addEventListener('click', (e) => {
+                    burstFestiveConfetti(e.clientX, e.clientY);
+                    alert('🎁 ¡Promoción Especial de Nochebuena!\nElige 2 o más artículos para tu pack personalizado y recibe un 15% de descuento directo en el total.');
+                });
+            }
+
+            const categoryCards = document.querySelectorAll('.category-card');
+            categoryCards.forEach(cat => {
+                cat.addEventListener('click', () => {
+                    const catTitle = cat.querySelector('.category-title')?.textContent || 'Colección';
+                    showToast(`Explorando colección: "${catTitle}" 🎅✨`);
+                });
+            });
+
+            updateCartUI();
+        });
+    </script>
+</body>
+
+</html>
